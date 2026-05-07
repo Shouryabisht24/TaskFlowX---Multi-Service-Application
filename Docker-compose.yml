@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecurepassword123
+      - POSTGRES_DB=db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - Taskflowx
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    ports:
+      - "8080:8080"
+    networks:
+      - Taskflowx
+    environment:
+      - SPRING_DATASOURCE_URL= jdbc:postgresql://db:5432/authdb
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME= org.postgresql.Driver
+      - SPRING_DATASOURCE_USERNAME= postgres
+      - SPRING_DATASOURCE_PASSWORD= mysecurepassword123
+    depends_on:
+      - db
+
+  task-service:
+    build: ./task-service
+    container_name: task-service
+    ports:
+      - "8081:8081"
+    networks:
+      - Taskflowx
+    environment:
+      - SPRING_DATASOURCE_URL= jdbc:postgresql://db:5432/taskdb
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME= org.postgresql.Driver
+      - SPRING_DATASOURCE_USERNAME= postgres
+      - SPRING_DATASOURCE_PASSWORD= mysecurepassword123
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+
+networks:
+  Taskflowx:
+    driver: bridge
