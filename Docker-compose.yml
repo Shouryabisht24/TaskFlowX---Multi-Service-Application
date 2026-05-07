@@ -1,11 +1,11 @@
 services:
   db:
-    image: postgres:latest
+    image: postgres:16
     container_name: postgres-db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=mysecurepassword123
-      - POSTGRES_DB=taskflowxdb
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: mysecurepassword123
+       POSTGRES_DB: taskflowxdb
     ports:
       - "5432:5432"
     volumes:
@@ -20,9 +20,9 @@ services:
     networks:
       - Taskflowx
     environment:
-      - SPRING_DATASOURCE_URL= jdbc:postgresql://db:5432/taskflowxdb
-      - AUTH_SECRET_KEY=c7b1e2f3a4b5c6d7e8f9g0h1i2j3k4l5m6n7o8p9q0r1s2t3u4v5w6x7y8z9
-      - ALGORITHM=HS256
+       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/taskflowxdb
+       AUTH_SECRET_KEY: c7b1e2f3a4b5c6d7e8f9g0h1i2j3k4l5m6n7o8p9q0r1s2t3u4v5w6x7y8z9
+       ALGORITHM: HS256
     depends_on:
       - db
 
@@ -34,9 +34,9 @@ services:
     networks:
       - Taskflowx
     environment:
-      - SPRING_DATASOURCE_URL= jdbc:postgresql://db:5432/taskflowxdb
-      - SPRING_DATASOURCE_USERNAME= postgres
-      - SPRING_DATASOURCE_PASSWORD= mysecurepassword123
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/taskflowxdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: mysecurepassword123
     depends_on:
       - db
 
