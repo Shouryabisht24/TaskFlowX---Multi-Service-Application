@@ -12,6 +12,12 @@ services:
       - db_data:/var/lib/postgresql/data
     networks:
       - Taskflowx
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -h localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   auth-service:
     build: ./auth-service
     container_name: auth-service
@@ -39,6 +45,20 @@ services:
       SPRING_DATASOURCE_PASSWORD: mysecurepassword123
     depends_on:
       - db
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80"
+    environment:
+      - VITE_AUTH_SERVICE_URL=http://localhost:8080
+      - VITE_TASK_SERVICE_URL=http://localhost:8081
+    networks:
+      - Taskflowx
+    depends_on:
+      - auth-service
+      - task-service
 
 volumes:
   db_data:
