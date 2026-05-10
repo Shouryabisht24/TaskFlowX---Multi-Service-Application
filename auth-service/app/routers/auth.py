@@ -4,6 +4,14 @@ from .. import schemas, models, security, database
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
+@router.options("/register")
+def options_register():
+    return {}
+
+@router.options("/login")
+def options_login():
+    return {}
+
 @router.post("/register", response_model=schemas.UserOut)
 def register(user: schemas.UserCreate, db: Session = Depends(database.get_db)):
     db_user = db.query(models.User).filter(models.User.username == user.username).first()
