@@ -4,7 +4,7 @@ metadata:
   name: taskflowx-project
   namespace: argocd
 spec:
-  description: A project for the TaskFlowX application
+  description: A project for the taskflowx application
 
   sourceRepos:
     - 'https://github.com/Shouryabisht24/TaskFlowX---Multi-Service-Application'
