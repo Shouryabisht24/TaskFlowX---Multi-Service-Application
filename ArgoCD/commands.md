@@ -19,7 +19,11 @@ kubectl port-forward -n argocd service/argocd-server 8443:443 --address 0.0.0.0 
 # Install tool
 s- udo apt-get install -y apache2-utils
 
-# Generate base64 (Replace 'yourbase64' with your actual password)
+# Generate bcrypt hash (Replace 'yourpassword' with your actual password)
+- htpasswd -B -n admin
+It will ask you to enter a password and generate a hash.
+Now use that hash in 
+- echo -n '<HASH>' | base64
 Use the generated base64 into secret file.
 
 7. Apply it to the cluster:
