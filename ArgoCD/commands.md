@@ -13,7 +13,7 @@ kubectl get svc -n argocd
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 
 5. Forward ports to access Argo CD server:
-kubectl port-forward -n argocd service/argocd-server 8443:443 &
+kubectl port-forward -n argocd service/argocd-server 8443:443 --address 0.0.0.0 &
 
 6. Setup admin password using secrets.yml with base64 encryption:
 # Install tool
