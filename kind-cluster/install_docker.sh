@@ -13,7 +13,7 @@ else
 fi
 
 # 2. Set up user permissions
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $USER && newgrp docker
 
 echo "------------------------------------------------------------------"
 echo "Done! To apply group changes immediately, run: newgrp docker"
