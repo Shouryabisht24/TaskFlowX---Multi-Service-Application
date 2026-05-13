@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: TaskFlowX-app
+  name: Taskflowx-app
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: TaskFlowX-project
+  project: taskflowx-project
   source: 
     repoURL: https://github.com/Shouryabisht24/TaskFlowX---Multi-Service-Application
     targetRevision: main
