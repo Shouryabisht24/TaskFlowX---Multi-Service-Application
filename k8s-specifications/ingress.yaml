@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: taskflowx-ingress
-  namespace: Taskflowx
   annotations:
     # Use Nginx as the controller
     kubernetes.io/ingress.class: "nginx"

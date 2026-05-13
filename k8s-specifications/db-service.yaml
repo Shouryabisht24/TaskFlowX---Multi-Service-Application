@@ -4,7 +4,6 @@ metadata:
   labels:
     app: postgres-db
   name: db-service
-  namespace: Taskflowx
 spec:
   type: ClusterIP
   ports:
