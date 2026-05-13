@@ -10,7 +10,7 @@ spec:
     - 'https://github.com/Shouryabisht24/TaskFlowX---Multi-Service-Application'
   
   destinations:
-    - namespace: Taskflowx
+    - namespace: taskflowx
       server: https://kubernetes.default.svc
 
   clusterResourceWhitelist:    # Which cluster-wide resources are allowed (e.g., CRDs)
