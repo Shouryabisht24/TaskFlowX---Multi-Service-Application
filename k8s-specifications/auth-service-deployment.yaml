@@ -15,16 +15,31 @@ spec:
       containers:
         - name: auth-service
           image: shourya24/auth-service:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-db:5432/taskflowxdb
-            - name: ALGORITHM
+            - name: DATABASE_URL
+              value: postgresql://postgres:mysecurepassword123@postgres-db:5432/taskflowxdb
+            - name: AUTH_ALGORITHM
               value: HS256
+            - name: AUTH_TOKEN_EXPIRE_MINUTES
+              value: "30"
             - name: AUTH_SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: auth-service-secrets
                   key: SECRET_KEY
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
       restartPolicy: Always

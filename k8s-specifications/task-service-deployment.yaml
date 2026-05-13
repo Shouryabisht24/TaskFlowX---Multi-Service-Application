@@ -15,6 +15,7 @@ spec:
       containers:
         - name: task-service
           image: shourya24/task-service:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
           env:
@@ -22,9 +23,21 @@ spec:
               value: jdbc:postgresql://postgres-db:5432/taskflowxdb
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
-            - name: DATASOURCE_PASSWORD
+            - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: task-service-secret
+                  name: task-service-secrets
                   key: DATASOURCE_PASSWORD
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+            initialDelaySeconds: 10
+            periodSeconds: 5
       restartPolicy: Always
