@@ -15,7 +15,7 @@ spec:
       containers:
         - name: task-service
           image: shourya24/task-service:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
           env:
