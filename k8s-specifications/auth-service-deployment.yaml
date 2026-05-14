@@ -24,7 +24,7 @@ spec:
             - name: AUTH_ALGORITHM
               value: HS256
             - name: AUTH_TOKEN_EXPIRE_MINUTES
-              value: "30"
+              value: '30'
             - name: AUTH_SECRET_KEY
               valueFrom:
                 secretKeyRef:

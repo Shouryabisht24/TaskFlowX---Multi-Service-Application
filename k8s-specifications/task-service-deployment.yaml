@@ -28,16 +28,16 @@ spec:
                 secretKeyRef:
                   name: task-service-secrets
                   key: DATASOURCE_PASSWORD
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8081
-            initialDelaySeconds: 30
-            periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /health
+              path: /actuator/health
               port: 8081
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 40
+            periodSeconds: 10
       restartPolicy: Always
