@@ -9,6 +9,10 @@ metadata:
   labels:
     release: kind-prometheus-kube-prome  # Label to associate with Prometheus release
 spec:
+  namespaceSelector:
+    matchNames:
+      - argocd
+
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-metrics # Selects services with this label, must match with ArgoCD metrics service, check with: kubectl get svc -n argocd
@@ -24,6 +28,10 @@ metadata:
   labels:
     release: kind-prometheus-kube-prome  # Label to associate with Prometheus release
 spec:
+  namespaceSelector:
+    matchNames:
+      - argocd
+
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-server-metrics # Selects services with this label, must match with ArgoCD server metrics service, check with: kubectl get svc -n argocd
@@ -39,6 +47,10 @@ metadata:
   labels:
     release: kind-prometheus-kube-prome  # Label to associate with Prometheus release
 spec:
+  namespaceSelector:
+    matchNames:
+      - argocd
+      
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server # Selects services with this label, must match with ArgoCD repo server metrics service, check with: kubectl get svc -n argocd
