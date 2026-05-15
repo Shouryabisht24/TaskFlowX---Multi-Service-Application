@@ -5,9 +5,9 @@ apiVersion: monitoring.coreos.com/v1 # API version for ServiceMonitor
 kind: ServiceMonitor                 # Resource type
 metadata:
   name: argocd-metrics               # Name of the ServiceMonitor
-  namespace: argocd                  # Namespace where ServiceMonitor is deployed
+  namespace: monitoring              # Namespace where ServiceMonitor is deployed
   labels:
-    release: kube-prometheus-stack   # Label to associate with Prometheus release
+    release: kind-prometheus-kube-prome   # Label to associate with Prometheus release
 spec:
   selector:
     matchLabels:
@@ -20,9 +20,9 @@ apiVersion: monitoring.coreos.com/v1 # API version for ServiceMonitor
 kind: ServiceMonitor                 # Resource type
 metadata:
   name: argocd-server-metrics        # Name of the ServiceMonitor
-  namespace: argocd                  # Namespace where ServiceMonitor is deployed
+  namespace: monitoring              # Namespace where ServiceMonitor is deployed
   labels:
-    release: kube-prometheus-stack   # Label to associate with Prometheus release
+    release: kind-prometheus-kube-prome  # Label to associate with Prometheus release
 spec:
   selector:
     matchLabels:
@@ -35,9 +35,9 @@ apiVersion: monitoring.coreos.com/v1 # API version for ServiceMonitor
 kind: ServiceMonitor                 # Resource type
 metadata:
   name: argocd-repo-server-metrics   # Name of the ServiceMonitor
-  namespace: argocd                  # Namespace where ServiceMonitor is deployed
+  namespace: monitoring              # Namespace where ServiceMonitor is deployed
   labels:
-    release: kube-prometheus-stack   # Label to associate with Prometheus release
+    release: kind-prometheus-kube-prome # Label to associate with Prometheus release
 spec:
   selector:
     matchLabels:
