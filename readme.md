@@ -11,6 +11,10 @@ This includes:
 5. Environment Variable Support
 6. Health Check Endpoints
 7. Clean Folder Structure
+8. Frontend
+9. Monitoring (Prometheus, Grafana)
+10. ArgoCD (CD)
+11. CI for auto image update in Docker Hub
 
 
 
@@ -24,3 +28,4 @@ http://localhost:8080/docs
 To make it easier I have asked AI to create front end for this app and then to remove all the manual work I have created a bash script to create all the folders & files and add code to it. So simply run frontend.sh
 
 ./frontend.sh
+
