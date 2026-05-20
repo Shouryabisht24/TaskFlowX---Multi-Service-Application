@@ -28,4 +28,3 @@ http://localhost:8080/docs
 To make it easier I have asked AI to create front end for this app and then to remove all the manual work I have created a bash script to create all the folders & files and add code to it. So simply run frontend.sh
 
 ./frontend.sh
-
